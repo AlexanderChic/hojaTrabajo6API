@@ -11,7 +11,6 @@ La API está desarrollada en **Node.js** utilizando **Express** como framework p
 ## 👥 Integrantes del Grupo
 
 - **Francisco Alexander Chic Barrios** - 📘 Carnet: 9490-22-2513
-- **Herbert Daniel Jocol Morataya** - 📘 Carnet: 9490-22-423
 
 ### 📚 Curso
 **Desarrollo Web**, Sección: **B**
