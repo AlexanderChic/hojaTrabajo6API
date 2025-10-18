@@ -1,215 +1,162 @@
-# 🧩 Hoja de Trabajo 6 - API REST con Node.js y Express
+## ALUMNO
 
-## 📖 Descripción del Proyecto
+1. FRANCISCO ALEXANDER CHIC BARRIOS, CARNET: 9490-22-2513, SECCION: "B"
 
-Esta API fue desarrollada como parte de la **Hoja de Trabajo 6** del curso de **Desarrollo Web**. El objetivo principal es implementar una **API REST** que permita realizar operaciones **CRUD (Crear, Leer, Actualizar y Eliminar)** sobre una colección de **usuarios**.
 
-La API está desarrollada en **Node.js** utilizando **Express** como framework principal.
 
----
+# API REST con Autenticación JWT
 
-## 👥 Integrantes del Grupo
+API REST desarrollada con Node.js y Express.js que implementa autenticación mediante JSON Web Tokens (JWT).
 
-- **Francisco Alexander Chic Barrios** - 📘 Carnet: 9490-22-2513
+## 🚀 URL de la API Desplegada
 
-### 📚 Curso
-**Desarrollo Web**, Sección: **B**
+**URL:** https://tu-api.onrender.com
 
----
+## 📋 Requisitos
 
-## 🚀 URL de la API Desplegada en Render
+- Node.js v14 o superior
+- npm
 
-🔗 **API Render URL:** 👉 [https://hojatrabajo6api.onrender.com/users](https://hojatrabajo6api.onrender.com/users)
+## 🔧 Instalación Local
 
----
-
-## ⚙️ Instrucciones para Ejecutar la API Localmente
-
-### 1️⃣ Clonar el repositorio desde GitHub
+1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tuUsuario/hojatrabajo6api.git
-cd hojatrabajo6api
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
 ```
 
-### 2️⃣ Instalar dependencias
+2. Instalar dependencias:
 ```bash
 npm install
 ```
 
-### 3️⃣ Ejecutar el servidor
-```bash
-node index.js
+3. Crear archivo `.env`:
+```env
+PORT=3000
+JWT_SECRET=tu_clave_secreta_super_segura
+JWT_EXPIRES_IN=30s
 ```
 
-### 4️⃣ Acceder a la API localmente
-Una vez ejecutado, puedes acceder a la ruta base de usuarios a través de:
+4. Ejecutar el servidor:
+```bash
+node server.js
+```
 
-👉 http://localhost:3000/users
+El servidor estará disponible en `http://localhost:3000`
 
----
+## 🔐 Autenticación
 
-## 🏗️ Configuración de Despliegue (Render)
+### Login
 
-| Configuración | Valor |
-| :--- | :--- |
-| Build Command | npm install |
-| Start Command | node index.js |
-| Runtime | Node 18+ |
-| Environment Variables | (no requeridas para este ejercicio) |
+**Endpoint:** `POST /login`
 
----
-
-## 📘 Descripción de los Endpoints (CRUD de Usuarios)
-
-### 1️⃣ POST /users
-👉 Crear un nuevo usuario
-
-**Ejemplo de Solicitud (Body JSON):**
+**Body:**
 ```json
 {
-  "dpi": "1234567890122",
-  "name": "Alexander Chic",
-  "email": "alexchicf@example.com",
-  "password": "Alex123!"
+  "email": "admin@example.com",
+  "password": "password123"
 }
 ```
 
-**Respuestas Posibles:**
+**Respuesta exitosa:**
+```json
+{
+  "message": "Login exitoso",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expiresIn": "30 segundos"
+}
+```
 
-| Código | Descripción |
-| :--- | :--- |
-| 201 | Usuario creado correctamente |
-| 400 | Faltan datos o formato inválido |
-| 409 | DPI o email ya registrados |
+**Nota:** El token expira en 30 segundos.
+
+## 📌 Endpoints
+
+### Usuarios
+
+#### Crear Usuario (No requiere autenticación)
+
+**Endpoint:** `POST /users`
+
+**Body:**
+```json
+{
+  "name": "Juan Pérez",
+  "email": "juan@example.com"
+}
+```
+
+**Respuesta:**
+```json
+{
+  "id": 3,
+  "name": "Juan Pérez",
+  "email": "juan@example.com"
+}
+```
 
 ---
 
-### 2️⃣ GET /users
-👉 Obtener todos los usuarios
+#### Listar Usuarios (Requiere autenticación)
 
-**Ejemplo de Solicitud:**
-```
-GET https://hojatrabajo6api.onrender.com/users
-```
+**Endpoint:** `GET /users`
 
-**Respuesta Exitosa (Ejemplo):**
+**Respuesta:**
 ```json
 [
   {
-    "dpi": "1234567890122",
-    "name": "Alexander Chic",
-    "email": "alexchicf@example.com"
+    "id": 1,
+    "name": "Juan Pérez",
+    "email": "juan@example.com"
   }
 ]
 ```
 
-**Parámetros Opcionales (Query Params):**
-
-| Parámetro | Descripción |
-| :--- | :--- |
-| name | Filtrar por nombre parcial |
-| email | Filtrar por email exacto |
-| limit | Límite de resultados (número) |
-| offset | Desde qué posición iniciar (número) |
-
 ---
 
-### 3️⃣ PUT /users/:dpi
-👉 Actualizar un usuario existente
+#### Actualizar Usuario (Requiere autenticación)
 
-**Ejemplo de Solicitud:**
+**Endpoint:** `PUT /users/:id`
+
+**Headers:**
 ```
-PUT https://hojatrabajo6api.onrender.com/users/1234567890122
+Authorization: Bearer <tu_token>
 ```
 
-**Body JSON:**
+**Body:**
 ```json
 {
-  "name": "Alexander C. Barrios",
-  "email": "alexcb@example.com",
-  "password": "NuevoPass123!",
-  "newDpi": "1234567890999"
+  "name": "Juan Carlos Pérez"
 }
 ```
 
-**Respuestas Posibles:**
-
-| Código | Descripción |
-| :--- | :--- |
-| 200 | Usuario actualizado correctamente |
-| 400 | Datos inválidos |
-| 404 | Usuario no encontrado |
-| 409 | Email o nuevo DPI ya registrados |
-
----
-
-### 4️⃣ DELETE /users/:dpi
-👉 Eliminar un usuario
-
-**Ejemplo de Solicitud:**
-```
-DELETE https://hojatrabajo6api.onrender.com/users/1234567890122
-```
-
-**Respuesta Exitosa:**
+**Respuesta:**
 ```json
-{ 
-  "message": "Usuario eliminado correctamente" 
+{
+  "id": 1,
+  "name": "Juan Carlos Pérez",
+  "email": "juan@example.com"
 }
 ```
 
-**Errores Posibles:**
-
-| Código | Descripción |
-| :--- | :--- |
-| 404 | Usuario no encontrado |
-
 ---
 
-## 🧠 Validaciones Incluidas
+#### Eliminar Usuario (Requiere autenticación)
 
-La API aplica las siguientes reglas de validación en la creación y actualización de usuarios:
+**Endpoint:** `DELETE /users/:id`
 
-- **DPI:** Debe contener exactamente 13 dígitos numéricos.
-- **Email:** Debe tener formato válido (usuario@dominio.com).
-- **Contraseña:** Debe incluir al menos una mayúscula, un número y un símbolo especial.
-- **Campos requeridos:** dpi, name, email, password.
-
----
-
-## 📦 Dependencias del Proyecto
-
-El proyecto utiliza las siguientes dependencias principales (extraídas de package.json):
-
-```json
-"dependencies": {
-  "cors": "^2.8.5",
-  "express": "^4.19.2",
-  "morgan": "^1.10.0"
-}
+**Headers:**
+```
+Authorization: Bearer <tu_token>
 ```
 
-| Paquete | Función |
-| :--- | :--- |
-| express | Framework para manejar las rutas y solicitudes HTTP. |
-| cors | Permite solicitudes desde distintos orígenes (CORS). |
-| morgan | Middleware para registrar las peticiones HTTP en la consola. |
+**Respuesta:** `204 No Content`
 
----
+## ⚠️ Errores Comunes
 
-## 💾 Estructura del Proyecto
+- **401 Unauthorized:** No se proporcionó token
+- **403 Forbidden:** Token inválido o expirado
+- **404 Not Found:** Recurso no encontrado
 
-```
-📁 hojatrabajo6api
-├── 📄 index.js         # Archivo principal de la aplicación
-├── 📄 package.json     # Metadatos y dependencias del proyecto
-└── 📄 README.md        # Documentación (este archivo)
-```
+## 👨‍💻 Autor
 
----
-
-## 📎 Repositorio en GitHub
-
-El código fuente del proyecto se encuentra disponible en:
-
-👉 https://github.com/tuUsuario/hojatrabajo6api
+FRANCISCO ALEXANDER CHIC BARRIOS - Hoja de Trabajo 6

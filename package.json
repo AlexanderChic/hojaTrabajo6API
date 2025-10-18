@@ -1,27 +1,23 @@
 {
-  "name": "hoja-de-trabajo-6",
+  "name": "hojatrabajo6api",
   "version": "1.0.0",
-  "description": "API Hoja de trabajo 6",
-  "main": "index.js",
-  "type": "module",
+  "description": "API REST con autenticación JWT",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "author": "Alexander",
+  "keywords": [
+    "api",
+    "jwt",
+    "authentication"
+  ],
+  "author": "Tu Nombre",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "morgan": "^1.10.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlexanderChic/hojaTrabajo6API.git"
-  },
-  "bugs": {
-    "url": "https://github.com/AlexanderChic/hojaTrabajo6API/issues"
-  },
-  "homepage": "https://github.com/AlexanderChic/hojaTrabajo6API#readme",
-  "devDependencies": {},
-  "keywords": []
+    "jsonwebtoken": "^9.0.2"
+  }
 }
