@@ -10,7 +10,7 @@ API REST desarrollada con Node.js y Express.js que implementa autenticación med
 
 ## 🚀 URL de la API Desplegada
 
-**URL:** https://tu-api.onrender.com
+**URL:** https://hojatrabajo6api-1.onrender.com
 
 ## 📋 Requisitos
 
@@ -21,7 +21,7 @@ API REST desarrollada con Node.js y Express.js que implementa autenticación med
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/AlexanderChic/hojaTrabajo6API/tree/jwt
 cd tu-repo
 ```
 
@@ -159,4 +159,4 @@ Authorization: Bearer <tu_token>
 
 ## 👨‍💻 Autor
 
-FRANCISCO ALEXANDER CHIC BARRIOS - Hoja de Trabajo 6
+FRANCISCO ALEXANDER CHIC BARRIOS - Hoja de Trabajo 7
